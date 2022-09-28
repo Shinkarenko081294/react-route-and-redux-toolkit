@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 const Homepage = () => {
     return (
         <div>
-            THISHOMEPAGE
-            This page doesn't exist. Go <a href="/">home</a>
-            This page doesn't exist. Go <Link to="/">home</Link>
+            <h1>THISHOMEPAGE</h1>
+            <h3>Get started with React-Router 6</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium est voluptate nostrum? Veritatis, deleniti eveniet minus necessitatibus eius sed veniam deserunt numquam quibusdam? Sequi totam numquam aliquam aut obcaecati ab.</p>
+            <Link to="/">home</Link>
         </div>
     )
 }
