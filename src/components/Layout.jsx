@@ -1,13 +1,14 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import styleLayout from './Layout.module.css';
+import { CustomLink } from './CustomLink/CustomLink';
 
 const Layout = () =>{
     return(
         <>
         <header>
-            <Link to="/">Home</Link>
-            <Link to="/posts">Blog</Link>
-            <Link to="/about">About</Link>
+            <CustomLink to="/">Home</CustomLink>
+            <CustomLink to="/posts">Blog</CustomLink>
+            <CustomLink to="/about">About</CustomLink>
         </header>
         <main className={styleLayout.container}>
             <Outlet />

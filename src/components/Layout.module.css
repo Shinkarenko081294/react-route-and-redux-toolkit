@@ -10,16 +10,7 @@ header{
     inset -5px -5px 5px rgb(59, 59, 59),
     inset 5px 5px 5px rgb(90, 90, 90);
 }
-a{
-    color: rgb(255,255,255);
-    margin: 10px;
-    text-decoration: none;
-    font-weight: bold;
-}
-a:hover{
-    color: brown;
-    text-decoration: overline;
-}
+
 .container{
     box-shadow: 0px 0px 10px rgb(90, 90, 90);
     border-radius: 10px;
