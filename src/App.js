@@ -12,6 +12,7 @@ import { Createpost } from './pages/Createpost';
 import { Loginpage } from './pages/LoginPage';
 import { RequireAuth } from './components/hoc/RequireAuth';
 import { AuthProvider } from './components/hoc/AuthProvider';
+import { UserPages } from './pages/UserPages';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="posts" element={<Blogpage />} />
           <Route path="posts/:id" element={<Singelpage />} />
           <Route path="auth" element={<Loginpage />} />
+          <Route path="userPage" element={<UserPages />} />
           <Route path="create" element={
               <RequireAuth>
                 <Createpost />

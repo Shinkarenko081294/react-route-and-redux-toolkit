@@ -10,6 +10,7 @@ const Layout = () =>{
             <CustomLink to="/posts">Blog</CustomLink>
             <CustomLink to="/about">About</CustomLink>
             <CustomLink to="/create">PrivatPage</CustomLink>
+            <CustomLink to="/userPage">Users</CustomLink>
         </header>
         <main className={styleLayout.container}>
             <Outlet />
