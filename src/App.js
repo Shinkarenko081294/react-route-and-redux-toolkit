@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-import styleApp from './App.module.css'
 
 import { Homepage } from './pages/Homepage';
 import { About } from './pages/Aboutpage';
@@ -13,6 +12,7 @@ import { Loginpage } from './pages/LoginPage';
 import { RequireAuth } from './components/hoc/RequireAuth';
 import { AuthProvider } from './components/hoc/AuthProvider';
 import { UserPages } from './pages/UserPages';
+import { TodoList } from './components/todo/Todolist';
 
 function App() {
   return (
@@ -27,6 +27,7 @@ function App() {
           <Route path="posts/:id" element={<Singelpage />} />
           <Route path="auth" element={<Loginpage />} />
           <Route path="userPage" element={<UserPages />} />
+          <Route path="todo" element={<TodoList />} />
           <Route path="create" element={
               <RequireAuth>
                 <Createpost />

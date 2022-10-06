@@ -11,6 +11,7 @@ const Layout = () =>{
             <CustomLink to="/about">About</CustomLink>
             <CustomLink to="/create">PrivatPage</CustomLink>
             <CustomLink to="/userPage">Users</CustomLink>
+            <CustomLink to="/todo">ToDoList</CustomLink>
         </header>
         <main className={styleLayout.container}>
             <Outlet />
