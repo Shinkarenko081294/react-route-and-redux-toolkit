@@ -8,6 +8,9 @@ import {addTodo} from '../../store/todoSlice';
 import { TodoItem } from "./TodoItem";
 import { InputFeild } from "./InputFeild";
 
+// css
+import stList from './Todolist.module.css';
+
 const TodoList = (props) =>{
     const todos = useSelector(state => state.todoSlice.todos);
     const dispatch = useDispatch();
@@ -19,10 +22,10 @@ const TodoList = (props) =>{
     const [text, setText] = useState('');
 
     return(
-        <>
+        <div className={stList.wrapper_todo}>
             <InputFeild text={text} handleInput={setText} handleSubmit={addTask}/>
 
-            <ul>
+            <ul className={stList.ulTodo}>
                 {todos.map((todo) => (
                     <TodoItem 
                         key={todo.id}
@@ -30,7 +33,7 @@ const TodoList = (props) =>{
                     />
                 ))}
             </ul>
-        </>
+        </div>
     )
 }
 

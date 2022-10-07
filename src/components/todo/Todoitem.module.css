@@ -1,0 +1,33 @@
+.liTodo{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    min-height: 30px;
+    padding: 10px;
+    box-shadow: 2px 2px 5px 1px rgb(100, 100, 100),
+    -2px -2px 5px 1px rgb(180, 180, 180),
+    inset 2px 2px 5px 1px rgb(180, 180, 180),
+    inset -2px -2px 5px 1px rgb(100, 100, 100);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.liTodo input:checked + .textTodo{
+    text-decoration: line-through;
+}
+
+.liTodo .textTodo{
+    font-family: cursive;
+}
+
+.liTodo .delTodo{
+    padding: 2px;
+    height: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgb(0, 0, 0);
+    background-color: brown;
+    color: rgb(255,255,255);
+    font-weight: bold;
+    cursor: pointer;
+}

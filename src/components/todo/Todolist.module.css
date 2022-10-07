@@ -1,0 +1,18 @@
+.wrapper_todo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 600px;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgb(0, 0, 0);
+}
+.ulTodo{
+    width: 90%;
+    border-radius: 10px;
+    /* box-shadow: inset 0px 0px 5px rgb(0, 0, 0); */
+}
