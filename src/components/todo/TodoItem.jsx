@@ -5,15 +5,15 @@ import {toggleTodo} from '../../store/todoSlice';
 
 import stItem from './Todoitem.module.css';
 
-const TodoItem = ({id, text, complited}) =>{
+const TodoItem = ({id, title, completed}) =>{
 
     const dispatch = useDispatch();
 
 
     return (
         <li className={stItem.liTodo}>
-            <input type="checkbox" checked={complited} onChange={() => dispatch(toggleTodo({id}))}/>
-            <div className={stItem.textTodo}>{text}</div>
+            <input type="checkbox" checked={completed} onChange={() => dispatch(toggleTodo({id}))}/>
+            <div className={stItem.textTodo}>{title}</div>
             <div className={stItem.delTodo} onClick={() => dispatch(removeTodo({id}))}>Delete</div>
         </li>
     )
