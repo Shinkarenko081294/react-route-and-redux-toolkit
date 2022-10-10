@@ -1,5 +1,6 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 
+// preloader
 export const fetchTodos = createAsyncThunk(
     'todos/fetchTodos',
     async function(_, {rejectWithValue}){
@@ -15,7 +16,93 @@ export const fetchTodos = createAsyncThunk(
         }
         
     }
+);
+
+// удаление записи
+export const deleteTodo = createAsyncThunk(
+    'todos/deleteTodos',
+    async function(id, {rejectWithValue, dispatch}){
+        try{
+            const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+                method: 'DELETE'
+            })
+            console.log(response);
+            if(!response.ok){
+                throw new Error('не могу удалить! ошибка на сервере!');
+            }
+
+            dispatch(removeTodo({id}));
+
+        }catch(error){
+            return rejectWithValue(error.message)
+        }
+    }
 )
+// изминение статуса
+export const toggeleTodos = createAsyncThunk(
+    'todos/toggeleTodos',
+    async function(id, {rejectWithValue, dispatch, getState}){
+        const todo = getState().todoSlice.todos.find(todo => todo.id === id);
+        try{
+            const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    completed: !todo.completed,
+                })
+            })
+            if(!response.ok){
+                throw new Error('не могу сменить статус!');
+            }
+
+            dispatch(toggleTodo({id}));
+
+            // проверка ответа сервера
+            // const data = await response.json();
+            // console.log(data);
+        }catch(error){
+            return rejectWithValue(error.message);
+        }
+    }
+)
+// добавление новой записи
+export const addTodoAsync = createAsyncThunk(
+    'todos/addTodoAsync',
+    async function(text, {rejectWithValue,dispatch}){
+        try{
+            const todo = {
+                title: text,
+                userId: 1,
+                completed: false
+            };
+            const response = await fetch(`https://jsonplaceholder.typicode.com/todos`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(todo)
+            });
+
+            if(!response.ok){
+                throw new Error('не могу добавить запись!');
+            }
+
+            const data = await response.json();
+            console.log(data);
+            dispatch(addTodo(data))
+
+        }catch(error){
+            return rejectWithValue(error.message);
+        }
+    }
+)
+
+const setError = (state, action) =>{
+    state.statuss = 'error';
+    state.error = action.payload;
+}
 
 const todoSlice = createSlice({
     name: 'todo',
@@ -27,13 +114,16 @@ const todoSlice = createSlice({
     },
     reducers: {
         addTodo(state, action){
-            console.log(state);
-            console.log(action);
-            state.todos.push({
-                id: new Date().toISOString(),
-                text: action.payload.text,
-                completed: false
-            })
+            // console.log(state);
+            // console.log(action);
+
+            state.todos.push(action.payload);
+
+            // state.todos.push({
+            //     id: new Date().toISOString(),
+            //     text: action.payload.text,
+            //     completed: false
+            // })
         },
         removeTodo(state, action){
            state.todos = state.todos.filter(todo => todo.id !== action.payload.id);
@@ -52,10 +142,10 @@ const todoSlice = createSlice({
             state.statuss = 'resolve';
             state.todos = action.payload;
         },
-        [fetchTodos.rejected]: (state, action) =>{
-            state.statuss = 'error';
-            state.error = action.payload;
-        } 
+        [fetchTodos.rejected]: setError,
+        [deleteTodo.rejected]: setError,
+        [toggeleTodos.rejected]: setError,
+        [addTodoAsync.rejected]: setError 
     }
 });
 

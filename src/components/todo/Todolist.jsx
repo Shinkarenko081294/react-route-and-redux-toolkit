@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import {useSelector , useDispatch} from 'react-redux';
 
-import {addTodo, fetchTodos} from '../../store/todoSlice';
+import {addTodoAsync, fetchTodos} from '../../store/todoSlice';
 
 import { TodoItem } from "./TodoItem";
 import { InputFeild } from "./InputFeild";
@@ -17,7 +17,7 @@ const TodoList = (props) =>{
     const dispatch = useDispatch();
 
     const addTask = () => {
-        dispatch(addTodo({text}))
+        dispatch(addTodoAsync(text))
         setText('')
     };
     const [text, setText] = useState('');
